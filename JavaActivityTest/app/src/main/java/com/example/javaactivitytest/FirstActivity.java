@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,6 +16,7 @@ public class FirstActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("FirstActivity", this.toString());
         setContentView(R.layout.first_layout);
         Button button1 = (Button) findViewById(R.id.button_1);
         button1.setOnClickListener(new View.OnClickListener() {
@@ -22,7 +24,7 @@ public class FirstActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //Toast.makeText(FirstActivity.this, "You clicked Button 1", Toast.LENGTH_SHORT).show();
                 //finish(); 销毁 Activity
-                Intent intent1 = new Intent(FirstActivity.this, SecondActivity.class);
+                Intent intent1 = new Intent(FirstActivity.this, FirstActivity.class);
                 startActivity(intent1);
             }
         });
