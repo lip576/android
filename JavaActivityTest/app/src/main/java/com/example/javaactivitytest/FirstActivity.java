@@ -48,4 +48,10 @@ public class FirstActivity extends AppCompatActivity {
         }
         return true;
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("SecondActivity", "onDestroy");
+    }
 }
