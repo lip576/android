@@ -7,12 +7,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private EditText editText;
     private ImageView imageView;
+    private ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,7 +22,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button button = (Button) findViewById(R.id.button);
         editText = (EditText) findViewById(R.id.edit_text);
         imageView = (ImageView) findViewById(R.id.image_view);
-        button.setOnClickListener((View.OnClickListener) this);
+        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+        button.setOnClickListener(this);
     }
     @Override
     public void onClick(View v) {
@@ -28,6 +31,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.button:
                 //String inputText = editText.getText().toString();
                 //Toast.makeText(MainActivity.this, inputText, Toast.LENGTH_SHORT).show();
+                if (progressBar.getVisibility() == View.GONE) {
+                    progressBar.setVisibility(View.VISIBLE);
+                }else{
+                    progressBar.setVisibility(View.GONE);
+                }
                 imageView.setImageResource(R.drawable.img_2);
                 break;
                 default:
