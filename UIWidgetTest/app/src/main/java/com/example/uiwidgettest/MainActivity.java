@@ -3,6 +3,7 @@ package com.example.uiwidgettest;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
@@ -31,21 +32,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button:
-                AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
-                dialog.setTitle("this is Dialog");
-                dialog.setMessage("Somethig import.");
-                dialog.setCancelable(false);
-                dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                    }
-                });
-                dialog.setNegativeButton("Cancle", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                    }
-                });
-                dialog.show();
+                ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
+                progressDialog.setTitle("This is ProgressDialog");
+                progressDialog.setMessage("Loading...");
+                progressDialog.setCancelable(true);
+                progressDialog.show();
+
+                //AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
+                //dialog.setTitle("this is Dialog");
+                //dialog.setMessage("Somethig import.");
+                //dialog.setCancelable(false);
+                //dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                //    @Override
+                //    public void onClick(DialogInterface dialogInterface, int i) {
+                //    }
+                //});
+                //dialog.setNegativeButton("Cancle", new DialogInterface.OnClickListener() {
+                //    @Override
+                //    public void onClick(DialogInterface dialogInterface, int i) {
+                //    }
+                //});
+                //dialog.show();
                 String inputText = editText.getText().toString();
                 Toast.makeText(MainActivity.this, inputText, Toast.LENGTH_SHORT).show();
                 if (progressBar.getVisibility() == View.GONE) {
