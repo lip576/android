@@ -22,6 +22,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Handler;
 import android.os.ParcelUuid;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
@@ -136,6 +137,7 @@ public class Display extends AppCompatActivity {
         Intent intent = getIntent();
         mMessage = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
         //Display required layout
+        assert mMessage != null;
         switch (mMessage){
             case "blood_pressure":
                 setContentView(R.layout.blood_pressure);
@@ -169,6 +171,7 @@ public class Display extends AppCompatActivity {
                 }
                 //Connect to selected device
                 runOnUiThread(new Runnable() {
+                    @RequiresApi(api = Build.VERSION_CODES.M)
                     @Override
                     public void run() {
                         connectToDevice(mDevice);
@@ -236,6 +239,7 @@ public class Display extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu, menu);
         mMenuItem = menu.findItem(R.id.mActions);
         mMenuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if (debug) {
@@ -341,6 +345,7 @@ public class Display extends AppCompatActivity {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onPause() {
         if (mBluetoothAdapter != null && mBluetoothAdapter.isEnabled()) {
@@ -377,9 +382,11 @@ public class Display extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void scanLeDevice(final boolean enable) {
         if (enable) {
             mHandler.postDelayed(new Runnable() {
+                @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
                 @Override
                 public void run() {
                     mLEScanner.stopScan(mScanCallback);
@@ -398,6 +405,7 @@ public class Display extends AppCompatActivity {
     }
 
     private ScanCallback mScanCallback = new ScanCallback() {
+        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
         @Override
         public void onScanResult(int callbackType, ScanResult res) {
             result = res;
@@ -436,6 +444,7 @@ public class Display extends AppCompatActivity {
         }
     };
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public void connectToDevice(BluetoothDevice device) {
         if (mGatt == null) {
             mGatt = device.connectGatt(this, false, gattCallback, 2);

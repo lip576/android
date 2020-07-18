@@ -99,5 +99,5 @@
         android:text="@string/author"
         android:textStyle="italic"
         android:textAlignment="center"
-        />
+        android:gravity="center_horizontal" />
 </RelativeLayout>
